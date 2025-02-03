@@ -16,7 +16,7 @@ eventlet.monkey_patch()
 
 import os
 from flask import Flask
-from flask_socketio import SocketIO, emit
+from flask_socketio import SocketIO, join_room, leave_room, emit
 
 app = Flask(__name__)
 
@@ -69,7 +69,7 @@ def register_socketio_events(sio: SocketIO):
                     "_id": str(room.get("_id")),
                 }
                 rooms_list.append(room_data)
-            socketio.emit("update_rooms", rooms_list)
+            emit("update_rooms", rooms_list)
         except Exception as e:
             print("에러 발생:", e)
 
