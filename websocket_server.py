@@ -398,6 +398,10 @@ def register_socketio_events(sio: SocketIO):
         # game_active_omok = False  # 게임 종료 상태로 설정
         print("게임 종료 처리 완료")
         
+# if __name__ == '__main__':
+#     # WebSocket 서버 실행
+#     socketio.run(app, host="0.0.0.0", port=5000)  # 외부에서 접근 가능하도록 설정
+
 if __name__ == '__main__':
-    # WebSocket 서버 실행
-    socketio.run(app, host="0.0.0.0", port=5000)  # 외부에서 접근 가능하도록 설정
+    port = int(os.environ.get("PORT", 5000))  # Railway에서 PORT 환경변수 사용
+    socketio.run(app, host="0.0.0.0", port=port)  # 외부 접속 허용
