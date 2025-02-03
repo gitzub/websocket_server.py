@@ -403,5 +403,6 @@ def register_socketio_events(sio: SocketIO):
 #     socketio.run(app, host="0.0.0.0", port=5000)  # 외부에서 접근 가능하도록 설정
 
 if __name__ == '__main__':
-    port = int(os.environ.get("PORT", 5000))  # Railway에서 PORT 환경변수 사용
+    # port = int(os.environ.get("PORT", 5000))  # Railway에서 PORT 환경변수 사용
+    port = int(os.getenv("PORT", 5000))  # Railway에서 PORT 환경 변수 가져오기
     socketio.run(app, host="0.0.0.0", port=port)  # 외부 접속 허용
