@@ -17,7 +17,8 @@ app = Flask(__name__)
 # SocketIO 객체를 직접 생성 (이전에는 socketio_instance.py에서 가져옴)
 socketio = SocketIO(
     app,
-    cors_allowed_origins="https://websocketserverpy-production.up.railway.app",  # 모든 오리진 허용
+    # cors_allowed_origins="https://websocketserverpy-production.up.railway.app",  # 모든 오리진 허용
+    cors_allowed_origins="*",  # 모든 오리진 허용
     transports=["websocket"]  # WebSocket 전송 방식 사용
 )
 
