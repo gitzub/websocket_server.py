@@ -70,6 +70,8 @@ def register_socketio_events(sio: SocketIO):
                     "_id": str(room.get("_id")),
                 }
                 rooms_list.append(room_data)
+            print("몽고db내용물:", app.mongo.db.GameOmok.find({"state": {"$in": ["대기중", "진행중"]}}))
+            print("보내는 방 목록:", rooms_list)  # ✅ 디버깅 출력
             emit("update_rooms", rooms_list)
         except Exception as e:
             print("에러 발생:", e)
@@ -421,4 +423,4 @@ if __name__ == '__main__':
     # eventlet을 사용하여 서버를 실행
     # eventlet.wsgi.server(eventlet.listen(('0.0.0.0', port)), app)
     print(f"🚀 WebSocket 서버 시작: ws://0.0.0.0:{port}")
-    socketio.run(app, host="0.0.0.0", port=port)
+    socketio.run(app, host="0.0.0.0", port=port, debug=True)
