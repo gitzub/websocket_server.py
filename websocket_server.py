@@ -9,7 +9,7 @@
 #     socketio.run(app, host="0.0.0.0", port=5000)
 
 
-import eventlet
+import eventlet11111111111111111111111111111111111111111111111111111111111111111111111111
 
 # eventlet 활성화
 eventlet.monkey_patch()  # ✅ 반드시 가장 먼저 호출해야 함
