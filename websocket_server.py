@@ -24,8 +24,8 @@ app = Flask(__name__)
 socketio = SocketIO(
     app,
     # cors_allowed_origins="http://websocketserverpy-production.up.railway.app",  # 모든 오리진 허용
-    # cors_allowed_origins="*",  # 모든 오리진 허용
-    cors_allowed_origins="https://websocketserverpy-production.up.railway.app/socket.io/",
+    cors_allowed_origins="*",  # 모든 오리진 허용
+    # cors_allowed_origins="https://websocketserverpy-production.up.railway.app/socket.io/",
     async_mode="eventlet",  # ✅ eventlet을 명시적으로 사용하도록 설정
     transports=["websocket"]  # WebSocket 전송 방식 사용
 )
