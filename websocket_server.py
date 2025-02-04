@@ -12,7 +12,7 @@
 import eventlet
 
 # eventlet 활성화
-eventlet.monkey_patch()
+eventlet.monkey_patch()  # ✅ 반드시 가장 먼저 호출해야 함
 
 import os
 from flask import Flask
@@ -26,6 +26,7 @@ socketio = SocketIO(
     # cors_allowed_origins="http://websocketserverpy-production.up.railway.app",  # 모든 오리진 허용
     # cors_allowed_origins="*",  # 모든 오리진 허용
     cors_allowed_origins="https://websocketserverpy-production.up.railway.app/socket.io/",
+    async_mode="eventlet",  # ✅ eventlet을 명시적으로 사용하도록 설정
     transports=["websocket"]  # WebSocket 전송 방식 사용
 )
 
@@ -417,4 +418,6 @@ if __name__ == '__main__':
     
     port = int(os.getenv("PORT", 5000))  # Railway에서 PORT 환경 변수 가져오기
     # eventlet을 사용하여 서버를 실행
-    eventlet.wsgi.server(eventlet.listen(('0.0.0.0', port)), app)
+    # eventlet.wsgi.server(eventlet.listen(('0.0.0.0', port)), app)
+    print(f"🚀 WebSocket 서버 시작: ws://0.0.0.0:{port}")
+    socketio.run(app, host="0.0.0.0", port=port)
