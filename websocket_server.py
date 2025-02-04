@@ -53,21 +53,23 @@ def handle_error(e):
 @socketio.on("connect")
 def handle_connect():
     print("클라이언트가 연결되었습니다.")
-    try:
-        rooms = app.mongo.db.GameOmok.find({"state": {"$in": ["대기중", "진행중"]}})
-        rooms_list = []
-        for room in rooms:
-            room_data = {
-                "room_name": room.get("room_name"),
-                "state": room.get("state"),
-                "_id": str(room.get("_id")),
-            }
-            rooms_list.append(room_data)
-        print("몽고db내용물:", app.mongo.db.GameOmok.find({"state": {"$in": ["대기중", "진행중"]}}))
-        print("보내는 방 목록:", rooms_list)  # ✅ 디버깅 출력
-        emit("update_rooms", rooms_list)
-    except Exception as e:
-        print("에러 발생:", e)
+    # try:
+    #     rooms = app.mongo.db.GameOmok.find({"state": {"$in": ["대기중", "진행중"]}})
+    #     rooms_list = []
+    #     for room in rooms:
+    #         room_data = {
+    #             "room_name": room.get("room_name"),
+    #             "state": room.get("state"),
+    #             "_id": str(room.get("_id")),
+    #         }
+    #         rooms_list.append(room_data)
+    #     print("몽고db내용물:", app.mongo.db.GameOmok.find({"state": {"$in": ["대기중", "진행중"]}}))
+    #     print("보내는 방 목록:", rooms_list)  # ✅ 디버깅 출력
+    #     emit("update_rooms", rooms_list)
+    # except Exception as e:
+    #     print("에러 발생:", e)
+
+    emit("update_rooms", [])  # 빈 리스트 전송
 
 # WebSocket 연결 및 게임 시작
 @socketio.on("join")
