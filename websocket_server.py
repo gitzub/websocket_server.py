@@ -415,8 +415,9 @@ if __name__ == '__main__':
     # # port = int(os.environ.get("PORT", 5000))  # Railway에서 PORT 환경변수 사용
     # port = int(os.getenv("PORT", 5000))  # Railway에서 PORT 환경 변수 가져오기
     # socketio.run(app, host="0.0.0.0", port=port)  # 외부 접속 허용
-    
-    port = int(os.getenv("PORT", 5000))  # Railway에서 PORT 환경 변수 가져오기
+
+    port = 5000  # 포트를 5000으로 고정
+    # port = int(os.getenv("PORT", 5000))  # Railway에서 PORT 환경 변수 가져오기
     # eventlet을 사용하여 서버를 실행
     # eventlet.wsgi.server(eventlet.listen(('0.0.0.0', port)), app)
     print(f"🚀 WebSocket 서버 시작: ws://0.0.0.0:{port}")
